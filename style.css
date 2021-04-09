@@ -67,6 +67,18 @@ button {
     outline: none;
 }
 
+/* Section common */
+
+.section {
+    padding: 50px;
+    text-align: center;
+    margin: auto;
+}
+
+.section__container {
+    max-width: 1200px;
+    margin: auto;
+}
 /* Typography */
 
 h1 {
@@ -163,17 +175,6 @@ p {
     border-radius: var(--size-border-radius);
 }
 
-/* Section common */
-.section {
-    padding: 50px;
-    text-align: center;
-    margin: auto;
-}
-
-.section__container {
-    max-width: 1200px;
-    margin: auto;
-}
 /* About */
 .about__majors {
     display: flex;
@@ -289,6 +290,10 @@ p {
 }
 
 /* Work */
+
+#work {
+    margin: auto;
+}
 .work__category {
     margin: 40px;
 }
@@ -331,6 +336,7 @@ p {
 }
 
 .work__projects {
+    width:100%;
     display: flex;  
     flex-wrap: wrap;
     justify-content: center;
