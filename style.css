@@ -242,6 +242,8 @@ p {
     font-size: var(--font-micro);
 }
 
+
+
 /* Skills */
 #skill {
     background-color: var(--color-yellow);
@@ -484,4 +486,26 @@ p {
         width: 100%;
         display: none;
     }
+
+    .about__majors {
+        flex-direction: column;
+    }
+
+    .major {
+        margin-bottom: 38px;
+    }
+
+    .skillset {
+        flex-direction: column;
+    }
+
+    .project {
+        flex-grow: 1;
+    }
+
+    .testimonial__avata {
+        width: 80px;
+        height: 80px;
+    }
+
 }
