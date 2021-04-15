@@ -29,19 +29,22 @@ homeContactBtn.addEventListener('click', () => {
     scrollIntoView('#contact');
 })
 
-//함수 정의해서 사용하기. 
+//home transparent animation
+// 마이너스 값이 되면 그냥 두게 한건 내가 그냥 해봄
+const home = document.querySelector('.home__container');
+const homeHeight = home.getBoundingClientRect().height;
+document.addEventListener('scroll', () => {
+    if(1 - window.scrollY/homeHeight >= 0){
+    home.style.opacity = 1 - window.scrollY/homeHeight;
+    } else {
+        return;
+    } 
+})
+
+
+
+
 function scrollIntoView(selector) {
     const scrollTo = document.querySelector(selector);
     scrollTo.scrollIntoView({behavior: "smooth"});
 }
-
-//home transparent animation
-const home = document.querySelector('#home');
-const homeHeight = home.getBoundingClientRect().height;
-document.addEventListener('scroll', () => {
-    if(window.scrollY > homeHeight/2) {
-        home.classList.add('home--dark');
-    } else {
-        home.classList.remove('home--dark');
-    }
-})
