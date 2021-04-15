@@ -13,17 +13,24 @@ document.addEventListener('scroll', () => {
 });
 
 // Handle scrolling when tapping on the navbar menu
-//navbar menu 요소를 클릭하면 이벤트가 실행되도록 하기. 
-// event.target 하면 클릭한 요소가 출력된다. 
 const navbarMenu = document.querySelector('.navbar__menu');
 navbarMenu.addEventListener('click', (event) => {
     const link = event.target.dataset.link;
     if (link == null) {
         return;
     } else {
-    const scrollTo = document.querySelector(link);
-    scrollTo.scrollIntoView({behavior: "smooth"});
+    scrollIntoView(link);
 }})
 
+// Handling scrolling when tapping on the contactme button
 
+const homeContactBtn = document.querySelector('.home__contact');
+homeContactBtn.addEventListener('click', () => {
+    scrollIntoView('#contact');
+})
 
+//함수 정의해서 사용하기. 
+function scrollIntoView(selector) {
+    const scrollTo = document.querySelector(selector);
+    scrollTo.scrollIntoView({behavior: "smooth"});
+}
