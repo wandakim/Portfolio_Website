@@ -8,7 +8,7 @@ document.addEventListener('scroll', () => {
     if(window.scrollY > navbarHeight) {
         navbar.classList.add('navbar--dark');
     } else {
-        navbar.classList.remove('navbar--dark')
+        navbar.classList.remove('navbar--dark');
     }
 });
 
@@ -34,3 +34,14 @@ function scrollIntoView(selector) {
     const scrollTo = document.querySelector(selector);
     scrollTo.scrollIntoView({behavior: "smooth"});
 }
+
+//home transparent animation
+const home = document.querySelector('#home');
+const homeHeight = home.getBoundingClientRect().height;
+document.addEventListener('scroll', () => {
+    if(window.scrollY > homeHeight/2) {
+        home.classList.add('home--dark');
+    } else {
+        home.classList.remove('home--dark');
+    }
+})
