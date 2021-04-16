@@ -318,7 +318,7 @@ p {
     margin: auto;
 }
 
-.work__category {
+.work__categories {
     margin: 40px;
 }
 
@@ -350,6 +350,7 @@ p {
     left: 4px;
     opacity: 0;
     transition: all 300ms ease
+    pointer-events: none; 
 }
 
 .category__btn:hover .category__count,
@@ -375,6 +376,11 @@ p {
     width: 280px;
     height: 250px;
 }
+
+.project.invisible {
+    display: none
+}
+
 
 .project__img {
     max-width: 100%;
@@ -498,7 +504,7 @@ p {
     opacity: 0; /* display:none으로 할 경우 transition안먹힘 */
     pointer-events: none; 
     transition: opacity 300ms ease-in;
-    
+    border:
 }
 
 .arrow-up.visible {
