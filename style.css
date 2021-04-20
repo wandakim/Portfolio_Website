@@ -193,6 +193,10 @@ p {
     border-radius: var(--size-border-radius);
 }
 
+.home__contact:hover {
+    background-color: var(--color-orange);
+}
+
 /* About */
 .about__majors {
     display: flex;
@@ -324,15 +328,15 @@ p {
     border: 1px solid var(--color-dark-white);
     border-radius: var(--size-border-radius);
     font-size: var(--font-regular);
-    padding: 8px 40px 8px 56px;
-    transition: all 300ms ease
+    padding: 8px 48px;
+    transition: all 300ms ease;
+    position: relative;
 }
 
 .category__btn.selected,
 .category__btn:hover {
     background-color: var(--color-pink);
     color: var(--color-white);
-    padding: 8px 48px;
 }
 
 .category__count {
@@ -343,18 +347,18 @@ p {
     display: inline-block;
     line-height: 24px;
     color: var(--color-white);
-    position: relative;
     top: -20px;
-    left: 4px;
+    right: 16px;    
     opacity: 0;
     transition: all 300ms ease; 
     pointer-events: none; 
+    position: absolute;
 }
 
 .category__btn:hover .category__count,
 .category__btn.selected .category__count {
     opacity: 1;
-    top: 0;
+    top: 5.5px;
 }
 
 .work__projects {
@@ -518,9 +522,23 @@ p {
 
 /* For below 768px screen width */
 
-@media screen and (max-width:678px) {
+@media screen and (max-width:768px) {
+    :root {
+
+    /* Font size */
+    --font-large: 30px;
+    --font-medium: 18px;
+    --font-regular: 16px;
+    --font-small: 14px;
+    --font-micro: 12px;
+
+    }
     .navbar__toggle-btn {
         display: block; 
+        top: 16px;
+        right: 16px;
+        font-size: var(--font-medium);
+        
         
     }
 
@@ -545,25 +563,65 @@ p {
         display: block;
     }
 
+    .section {
+        padding: 16px;
+        padding-top: 40px;
+    }
+
     .about__majors {
         flex-direction: column;
+        margin-top: 30px;
+        margin-bottom: 0px;
     }
 
     .major {
-        margin-bottom: 38px;
+        margin-bottom: 30px;
     }
 
     .skillset {
         flex-direction: column;
     }
 
+    .category__btn {
+        padding: 8px;
+        margin: 4px 0;
+        width: 100%;
+    }
+
     .project {
         flex-grow: 1;
     }
 
+    .testimonial {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .testimonial__avata {
-        width: 80px;
-        height: 80px;
+        width: 120px;
+        height: 120px;   
+    }
+
+    .testimonial__avata:nth-child(even),
+    .testimonial__avata:nth-child(odd) {
+        margin: 0;
+        margin-bottom: 20px;
+    }
+   
+
+    .testimonial__speach-bubble {
+        order: 1;
+    }
+
+    .arrow-up {
+        bottom: 16px;
+        right: 16px;
+        width: 50px;
+        font-size: 30px;
+        height: 50px;
+        line-height: 50px; 
+        right: 16px;
+        bottom: 16px;   
     }
 }
 
