@@ -59,25 +59,28 @@ arrowUp.addEventListener('click', () => {
 
 //Project
 //Handling sort by project buttons
+
 const workBtnContainer = document.querySelector('.work__categories');
-const projectContainer = document.querySelector('.work__projects');
-const projects = document.querySelectorAll('.project');
-workBtnContainer.addEventListener('click', (e) => {
+const projects = document.querySelectorAll('.project')
+const projectContainer = document.querySelector('.work__projects')
+workBtnContainer.addEventListener('click', (e) => {  
     const filter = e.target.dataset.filter || e.target.parentNode.dataset.filter;
-    if(filter == null){ //만일에 대비. 
-        return;
-    }    
-    projects.forEach((project) => {
-        if(filter === '*' || filter === project.dataset.type) {
-            project.classList.remove('invisible');
-        } else {
-            project.classList.add('invisible');
-        }
-    });
+    if( filter == null ){
+        return; 
+    }
+    projectContainer.classList.add('anim-out');
+    
+    setTimeout(() => {
+        projects.forEach((project) => {
+            if (filter === '*' || filter === project.dataset.type) {
+                project.classList.remove('invisible');
+            } else {
+                project.classList.add('invisible');
+            }
+        });
+        projectContainer.classList.remove('anim-out');
+    }, 300);
 })
-
-
-
 
 
 function scrollIntoView(selector) {
