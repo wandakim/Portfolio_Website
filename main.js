@@ -20,7 +20,13 @@ navbarMenu.addEventListener('click', (event) => {
         return;
     } else {
     scrollIntoView(link);
+    navbarMenu.classList.remove('open');
 }})
+
+const navbarToggleBtn = document.querySelector('.navbar__toggle-btn');
+navbarToggleBtn.addEventListener('click', () => {
+    navbarMenu.classList.toggle('open');
+}); 
 
 // Handling scrolling when tapping on the contactme button
 
