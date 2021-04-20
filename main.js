@@ -58,7 +58,6 @@ arrowUp.addEventListener('click', () => {
 })
 
 //Project
-//Handling sort by project buttons
 
 const workBtnContainer = document.querySelector('.work__categories');
 const projects = document.querySelectorAll('.project')
@@ -68,8 +67,15 @@ workBtnContainer.addEventListener('click', (e) => {
     if( filter == null ){
         return; 
     }
+
+    // Remove selection from the previous item and select the new one
+
+    const active = document.querySelector('.category__btn.selected');
+    active.classList.remove('selected');
+    e.target.classList.add('selected');
+    // 왠지 모르겠지만 span을 클릭했을 때에도 e.target이 button으로 나오고 있다. 
+    // 일단은 잘 작동하니 넘어가지만 문제가 될 경우 다시 한번 확인할 필요 있다. 
     projectContainer.classList.add('anim-out');
-    
     setTimeout(() => {
         projects.forEach((project) => {
             if (filter === '*' || filter === project.dataset.type) {

@@ -146,14 +146,12 @@ p {
     margin: 0 4px;
     cursor: pointer;
     border-radius: var(--size-border-radius);
-}
-
-.navbar__menu__item.active {
-    border: 1px solid var(--color-white);
+    border: 1px solid transparent;
 }
 
 .navbar__menu__item:hover {
     background-color: var(--color-dark-pink);
+    border: 1px solid var(--color-white);
 }
 
 .navbar__toggle-btn {
@@ -330,7 +328,7 @@ p {
     transition: all 300ms ease
 }
 
-.category__btn.active,
+.category__btn.selected,
 .category__btn:hover {
     background-color: var(--color-pink);
     color: var(--color-white);
@@ -338,7 +336,7 @@ p {
 }
 
 .category__count {
-    background-color: #6b9cff;
+    background-color: #6b9cff;  
     border-radius: 50%;
     width: 24px;
     height: 24px;
@@ -349,12 +347,12 @@ p {
     top: -20px;
     left: 4px;
     opacity: 0;
-    transition: all 300ms ease
+    transition: all 300ms ease; 
     pointer-events: none; 
 }
 
 .category__btn:hover .category__count,
-.category__btn.active .category__count {
+.category__btn.selected .category__count {
     opacity: 1;
     top: 0;
 }
