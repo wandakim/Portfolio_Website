@@ -100,5 +100,36 @@ function scrollIntoView(selector) {
     scrollTo.scrollIntoView({behavior: "smooth"});
 }
 
+const sectionIds = [
+    '#home',
+    '#about',
+    '#skill',
+    '#work',
+    '#testimonials',
+    '#contact'
+];
+const sections = sectionIds.map(id => document.querySelector(id));
+const navItems = sectionIds.map(id => document.querySelector(`[data-link="${id}"]`));
 
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5,
+};
 
+const observerCallback = (entries, observer) => {
+    entries.forEach((entry) => {
+    const selectNavbarbyentry = 
+        document.querySelector(`[data-link="#${entry.target.id}"`);
+
+    if(entry.isIntersecting){
+        selectNavbarbyentry.classList.add('active');
+    } else {
+        selectNavbarbyentry.classList.remove('active');
+    }
+    });
+
+};
+
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+sections.forEach(section => observer.observe(section));
