@@ -15,13 +15,15 @@ document.addEventListener('scroll', () => {
 // Handle scrolling when tapping on the navbar menu
 const navbarMenu = document.querySelector('.navbar__menu');
 navbarMenu.addEventListener('click', (event) => {
+    const target = event.target;
     const link = event.target.dataset.link;
     if (link == null) {
         return;
-    } else {
+    } 
     scrollIntoView(link);
+    selectNavItem(target);
     navbarMenu.classList.remove('open');
-}})
+});
 
 const navbarToggleBtn = document.querySelector('.navbar__toggle-btn');
 navbarToggleBtn.addEventListener('click', () => {
@@ -59,6 +61,11 @@ document.addEventListener('scroll', () => {
 
 //Handle click on the "arrow up" button
 
+function scrollIntoView(selector) {
+    const scrollTo = document.querySelector(selector);
+    scrollTo.scrollIntoView({behavior: "smooth"});
+}
+
 arrowUp.addEventListener('click', () => {
     scrollIntoView('#home');
 })
@@ -73,9 +80,7 @@ workBtnContainer.addEventListener('click', (e) => {
     if( filter == null ){
         return; 
     }
-
     // Remove selection from the previous item and select the new one
-
     const active = document.querySelector('.category__btn.selected');
     active.classList.remove('selected');
     e.target.classList.add('selected');
@@ -94,12 +99,7 @@ workBtnContainer.addEventListener('click', (e) => {
     }, 300);
 })
 
-
-function scrollIntoView(selector) {
-    const scrollTo = document.querySelector(selector);
-    scrollTo.scrollIntoView({behavior: "smooth"});
-}
-
+//Navbar activation with scroll by sections
 const sectionIds = [
     '#home',
     '#about',
@@ -111,25 +111,43 @@ const sectionIds = [
 const sections = sectionIds.map(id => document.querySelector(id));
 const navItems = sectionIds.map(id => document.querySelector(`[data-link="${id}"]`));
 
+let selectedNavIndex = 0;
+let selectedNavitem = navItems[0];
+
+function selectNavItem(selected) {
+    selectedNavitem.classList.remove('active');
+    selectedNavitem = selected;
+    selectedNavitem.classList.add('active');
+};
+const observerCallback = (entries, observer) => {
+    entries.forEach((entry) => {
+    if(!entry.isIntersecting && entry.intersectionRatio > 0){ 
+        const index = sectionIds.indexOf(`#${entry.target.id}`);  
+        if(entry.boundingClientRect.y < 0) {
+            selectedNavIndex = index + 1;
+        } else {
+            selectedNavIndex = index - 1;
+        }
+    }
+});
+};
+
 const observerOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.5,
-};
-
-const observerCallback = (entries, observer) => {
-    entries.forEach((entry) => {
-    const selectNavbarbyentry = 
-        document.querySelector(`[data-link="#${entry.target.id}"`);
-
-    if(entry.isIntersecting){
-        selectNavbarbyentry.classList.add('active');
-    } else {
-        selectNavbarbyentry.classList.remove('active');
-    }
-    });
-
-};
-
+    threshold: 0.3
+};  
 const observer = new IntersectionObserver(observerCallback, observerOptions);
 sections.forEach(section => observer.observe(section));
+
+window.addEventListener('wheel', () => {
+    if(window.scrollY === 0){
+        selectedNavIndex = 0;
+    } else if (
+        window.scrollY + window.innerHeight ===
+        document.body.clientHeight
+    ) {
+        selectedNavIndex = navItems.length - 1;
+    }
+selectNavItem(navItems[selectedNavIndex]);
+});
