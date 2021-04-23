@@ -21,7 +21,7 @@ navbarMenu.addEventListener('click', (event) => {
         return;
     } 
     scrollIntoView(link);
-    // selectNavItem(target); 지워도 될듯. scrollIntoView scrollIntoView에 넣어두었음. 
+    selectNavItem(target);
     navbarMenu.classList.remove('open');
 });
 
@@ -63,7 +63,7 @@ document.addEventListener('scroll', () => {
 
 arrowUp.addEventListener('click', () => {
     scrollIntoView('#home');
-});
+})
 
 //Project
 
@@ -97,8 +97,6 @@ workBtnContainer.addEventListener('click', (e) => {
 function scrollIntoView(selector) {
     const scrollTo = document.querySelector(selector);
     scrollTo.scrollIntoView({behavior: "smooth"});
-    selectNavItem(navItems[sectionIds.indexOf(selector)]);
-    
 }
 
 //Navbar activation with scroll by sections
