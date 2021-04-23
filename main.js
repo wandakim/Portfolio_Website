@@ -21,7 +21,7 @@ navbarMenu.addEventListener('click', (event) => {
         return;
     } 
     scrollIntoView(link);
-    selectNavItem(target);
+    // selectNavItem(target); 지워도 될듯. scrollIntoView scrollIntoView에 넣어두었음. 
     navbarMenu.classList.remove('open');
 });
 
@@ -61,14 +61,9 @@ document.addEventListener('scroll', () => {
 
 //Handle click on the "arrow up" button
 
-function scrollIntoView(selector) {
-    const scrollTo = document.querySelector(selector);
-    scrollTo.scrollIntoView({behavior: "smooth"});
-}
-
 arrowUp.addEventListener('click', () => {
     scrollIntoView('#home');
-})
+});
 
 //Project
 
@@ -99,7 +94,18 @@ workBtnContainer.addEventListener('click', (e) => {
     }, 300);
 })
 
+function scrollIntoView(selector) {
+    const scrollTo = document.querySelector(selector);
+    scrollTo.scrollIntoView({behavior: "smooth"});
+    selectNavItem(navItems[sectionIds.indexOf(selector)]);
+    
+}
+
 //Navbar activation with scroll by sections
+// 1. 모든 섹션 요소들과 아이템들을 가져온다. 
+// 2. IntersectionObserver 사용, 모든 섹션들을 관찰한다. 
+// 3. 보여지는 섹션 에 해당하는 메뉴 아이템들을 활성화시킨다. 
+
 const sectionIds = [
     '#home',
     '#about',
@@ -151,4 +157,5 @@ window.addEventListener('wheel', () => {
 selectNavItem(navItems[selectedNavIndex]);
 }); 
 
-//scroll vs wheel 
+//scroll - 브라우저상에서 일어나는 모든 스크롤 이벤트
+//wheel - 사용자가 움직이는 이벤트 
