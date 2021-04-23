@@ -139,7 +139,6 @@ const observerOptions = {
 };  
 const observer = new IntersectionObserver(observerCallback, observerOptions);
 sections.forEach(section => observer.observe(section));
-
 window.addEventListener('wheel', () => {
     if(window.scrollY === 0){
         selectedNavIndex = 0;
@@ -150,4 +149,6 @@ window.addEventListener('wheel', () => {
         selectedNavIndex = navItems.length - 1;
     }
 selectNavItem(navItems[selectedNavIndex]);
-});
+}); 
+
+//scroll vs wheel 
